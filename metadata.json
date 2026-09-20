@@ -1,0 +1,6 @@
+{
+  "name": "MyPeople Tasks",
+  "description": "Enterprise project and task management system with agile lists, boards, calendar views, AI learning memories, portfolios, goals, and team collaboration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

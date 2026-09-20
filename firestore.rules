@@ -1,0 +1,60 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isValidProject(data) {
+      return data.id is string && data.id.size() <= 128 &&
+             data.name is string && data.name.size() > 0 && data.name.size() <= 200 &&
+             data.color is string && data.color.size() <= 50;
+    }
+
+    function isValidTask(data) {
+      return data.id is string && data.id.size() <= 128 &&
+             data.title is string && data.title.size() > 0 && data.title.size() <= 300 &&
+             data.status in ['To Do', 'In Progress', 'Review', 'Done'] &&
+             data.priority in ['Low', 'Medium', 'High'] &&
+             data.projectIds is list && data.projectIds.size() <= 50;
+    }
+
+    function isValidMemory(data) {
+      return data.id is string && data.id.size() <= 128 &&
+             data.title is string && data.title.size() > 0 && data.title.size() <= 300 &&
+             data.category in ['workflow', 'insight', 'decision', 'recommendation'] &&
+             data.content is string && data.content.size() <= 20000;
+    }
+
+    // Projects collection
+    match /projects/{projectId} {
+      allow read: if true;
+      allow create, update: if isValidId(projectId) && isValidProject(incoming());
+      allow delete: if isValidId(projectId);
+    }
+
+    // Tasks collection
+    match /tasks/{taskId} {
+      allow read: if true;
+      allow create, update: if isValidId(taskId) && isValidTask(incoming());
+      allow delete: if isValidId(taskId);
+    }
+
+    // Memories collection
+    match /memories/{memoryId} {
+      allow read: if true;
+      allow create, update: if isValidId(memoryId) && isValidMemory(incoming());
+      allow delete: if isValidId(memoryId);
+    }
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

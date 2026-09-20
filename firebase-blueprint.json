@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "A workspace project containing tasks, sections, and metadata",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "color": { "type": "string" },
+        "isPublic": { "type": "boolean" },
+        "description": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "health": { "type": "string", "enum": ["On Track", "At Risk", "Off Track"] },
+        "isStarred": { "type": "boolean" },
+        "isArchived": { "type": "boolean" },
+        "icon": { "type": "string" },
+        "sections": { "type": "array" },
+        "connectedSheet": { "type": "object" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "color"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "An actionable work item within one or more projects",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string", "enum": ["To Do", "In Progress", "Review", "Done"] },
+        "priority": { "type": "string", "enum": ["Low", "Medium", "High"] },
+        "assigneeId": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "sectionId": { "type": "string" },
+        "projectIds": { "type": "array" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "status", "priority", "projectIds"]
+    },
+    "AIMemoryNote": {
+      "title": "AIMemoryNote",
+      "description": "An AI memory, decision, workflow, or insight note",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string", "enum": ["workflow", "insight", "decision", "recommendation"] },
+        "content": { "type": "string" },
+        "tags": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "isPinned": { "type": "boolean" }
+      },
+      "required": ["id", "title", "category", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Collection of team projects"
+    },
+    "/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "Collection of project tasks"
+    },
+    "/memories/{memoryId}": {
+      "schema": "AIMemoryNote",
+      "description": "Collection of AI memory notes and insights"
+    }
+  }
+}

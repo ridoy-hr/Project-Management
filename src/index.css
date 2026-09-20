@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Inria Serif", serif;
+  --font-sans: "Roboto", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  --color-page-bg: #F5F5F5;
+  --color-text-main: #000000;
+  --color-text-link: #20588E;
+  --color-border: #CCCCCC;
+  
+  --color-mp-green-50: #F2FBF5;
+  --color-mp-green-100: #E5F6E9;
+  --color-mp-green-200: #CBEED5;
+  --color-mp-green-300: #98DCAB;
+  --color-mp-green-400: #66CB81;
+  --color-mp-green-500: #34B957;
+  --color-mp-green-default: #02A82D;
+  --color-mp-green-700: #018624;
+  --color-mp-green-800: #00651B;
+  --color-mp-green-900: #004213;
+
+  --color-mp-blue-50: #F5F7F8;
+  --color-mp-blue-100: #EBF0F2;
+  --color-mp-blue-200: #D7E1E3;
+  --color-mp-blue-300: #AEC4CB;
+  --color-mp-blue-400: #88A6B1;
+  --color-mp-blue-500: #608897;
+  --color-mp-blue-default: #396B7E;
+  --color-mp-blue-700: #2D5564;
+  --color-mp-blue-800: #22404B;
+  --color-mp-blue-900: #162B32;
+
+  --color-success-bg: #E5F6E9;
+  --color-success-border: #2BC841;
+  --color-success-text: #018624;
+
+  --color-error-bg: #FFE3E3;
+  --color-error-border: #E06764;
+  --color-error-text: #E13838;
+
+  --color-alert-bg: #FEF4E5;
+  --color-alert-border: #FCBE67;
+  --color-alert-text: #FB9302;
+
+  --color-edit-bg: #E8F2FD;
+  --color-edit-border: #5099EC;
+  --color-edit-text: #1E66BA;
+
+  --color-black-50: #F2F2F2;
+  --color-black-100: #E4E4E4;
+  --color-black-200: #CCCCCC;
+  --color-black-300: #999999;
+  --color-black-400: #666666;
+  --color-black-500: #333333;
+}
+
+body {
+  background-color: var(--color-page-bg);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+}
+
+.heading-1 { font-family: var(--font-serif); font-size: 40px; font-weight: 700; line-height: 48px; letter-spacing: -0.25px; }
+.heading-2 { font-family: var(--font-serif); font-size: 36px; font-weight: 700; line-height: 44px; letter-spacing: -0.25px; }
+.heading-3 { font-family: var(--font-inter); font-size: 32px; font-weight: 600; line-height: 40px; }
+.heading-4 { font-family: var(--font-inter); font-size: 28px; font-weight: 600; line-height: 36px; }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
